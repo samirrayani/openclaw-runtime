@@ -10,13 +10,6 @@ USER root
 COPY wrapper.sh /wrapper.sh
 RUN chmod +x /wrapper.sh
 
-# Create data directories
-RUN mkdir -p /data/.openclaw /data/workspace && \
-    chown -R node:node /data
-
-# Switch back to node user
-USER node
-
 # Set working directory
 WORKDIR /app
 
@@ -25,5 +18,7 @@ ENV OPENCLAW_STATE_DIR=/data/.openclaw
 ENV OPENCLAW_WORKSPACE_DIR=/data/workspace
 ENV NODE_ENV=production
 
-# Use wrapper as entrypoint
+# Run as root so we can fix volume permissions at runtime
+# wrapper.sh will handle permissions and drop to node user
+
 ENTRYPOINT ["/wrapper.sh"]
