@@ -18,7 +18,7 @@ This repo contains a Dockerfile that:
 
 ## Usage
 
-This repo is designed to be deployed via Railway or similar platforms. It's used by [OpenClaw Cloud](https://github.com/samir/openclaw-cloud) for automated deployments.
+This repo is designed to be deployed via Railway or similar platforms for automated deployments.
 
 ## Manual Docker Build
 
