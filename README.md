@@ -26,3 +26,4 @@ This repo is designed to be deployed via Railway or similar platforms for automa
 docker build -t openclaw-runtime .
 docker run -e ANTHROPIC_API_KEY=your-key -p 3000:3000 openclaw-runtime
 ```
+# Trigger rebuild 1769900765
