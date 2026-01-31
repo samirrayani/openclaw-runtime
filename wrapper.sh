@@ -10,8 +10,20 @@ CONFIG_FILE="$CONFIG_DIR/openclaw.json"
 echo "[wrapper] Starting OpenClaw Cloud wrapper..."
 echo "[wrapper] Config dir: $CONFIG_DIR"
 
-# Create directories
-mkdir -p "$CONFIG_DIR" "${OPENCLAW_WORKSPACE_DIR:-/data/workspace}" 2>/dev/null || true
+# Create directories (critical - must succeed)
+echo "[wrapper] Creating directories..."
+if ! mkdir -p "$CONFIG_DIR" "${OPENCLAW_WORKSPACE_DIR:-/data/workspace}"; then
+    echo "[wrapper] Failed to create dirs, trying with different approach..."
+    # Sometimes /data mount needs a moment
+    sleep 1
+    mkdir -p "$CONFIG_DIR" "${OPENCLAW_WORKSPACE_DIR:-/data/workspace}" || {
+        echo "[wrapper] ERROR: Cannot create $CONFIG_DIR"
+        echo "[wrapper] Checking /data permissions..."
+        ls -la /data 2>&1 || echo "/data does not exist"
+        exit 1
+    }
+fi
+echo "[wrapper] Directories created successfully"
 
 # Check required env vars
 if [ -z "$ANTHROPIC_API_KEY" ]; then
