@@ -66,14 +66,12 @@ EOF
 {
   "gateway": {
     "mode": "local",
-    "bind": "0.0.0.0",
+    "bind": "custom",
+    "customBind": "0.0.0.0",
     "port": ${PORT:-3000},
     "auth": {
       "mode": "token",
       "token": "$OPENCLAW_GATEWAY_TOKEN"
-    },
-    "web": {
-      "enabled": true
     }
   },
   "auth": {
