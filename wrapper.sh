@@ -87,5 +87,11 @@ else
 fi
 
 echo "[wrapper] Starting OpenClaw gateway on port ${PORT:-3000}..."
+echo "[wrapper] Config contents:"
+cat "$CONFIG_FILE"
+echo ""
+echo "[wrapper] Environment:"
+env | grep -E "^(PORT|OPENCLAW|ANTHROPIC)" | sort
+echo "[wrapper] Launching gateway..."
 cd /app
-exec node dist/index.js gateway
+exec node dist/index.js gateway 2>&1
