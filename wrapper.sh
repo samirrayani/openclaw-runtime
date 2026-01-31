@@ -61,14 +61,11 @@ EOF
         echo "[wrapper] Telegram channel configured"
     fi
 
-    # Build full config - web dashboard enabled by default
+    # Build full config - minimal valid config
     cat > "$CONFIG_FILE" <<EOF
 {
   "gateway": {
     "mode": "local",
-    "bind": "custom",
-    "customBind": "0.0.0.0",
-    "port": ${PORT:-3000},
     "auth": {
       "mode": "token",
       "token": "$OPENCLAW_GATEWAY_TOKEN"
