@@ -53,7 +53,7 @@ EOF
   "gateway": {
     "mode": "local",
     "bind": "0.0.0.0",
-    "port": 3000,
+    "port": ${PORT:-3000},
     "auth": {
       "mode": "token",
       "token": "$OPENCLAW_GATEWAY_TOKEN"
